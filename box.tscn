@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c41w7lqlilx1t"]
+
+[ext_resource type="Texture2D" uid="uid://nud41v23p2hh" path="res://assets/Textures-16.png" id="1_mm4dv"]
+[ext_resource type="Script" path="res://box.gd" id="1_suhtd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i4o8"]
+size = Vector2(16, 16)
+
+[node name="Box" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_suhtd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_mm4dv")
+region_enabled = true
+region_rect = Rect2(32, 224, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_8i4o8")
