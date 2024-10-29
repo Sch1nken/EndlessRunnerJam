@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci5xq4fxd72er"]
+
+[ext_resource type="PackedScene" uid="uid://cdgip4poa2ctc" path="res://level.tscn" id="1_qrajk"]
+[ext_resource type="PackedScene" uid="uid://c544jwfm1cetq" path="res://player.tscn" id="2_pkd7v"]
+[ext_resource type="PackedScene" uid="uid://dy02870g15ryp" path="res://bullet.tscn" id="3_ulq80"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cx62p"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axjki"]
+normal = Vector2(-1, 0)
+
+[node name="Game" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_qrajk")]
+
+[node name="Player" parent="." instance=ExtResource("2_pkd7v")]
+position = Vector2(56, 554)
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+shape = SubResource("WorldBoundaryShape2D_cx62p")
+
+[node name="Right" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1152, 0)
+shape = SubResource("WorldBoundaryShape2D_axjki")
+
+[node name="Bullet" parent="." instance=ExtResource("3_ulq80")]
+position = Vector2(939, 563)
