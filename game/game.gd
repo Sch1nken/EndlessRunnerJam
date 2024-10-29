@@ -1,10 +1,9 @@
 extends Node2D
 
-
 @onready var obstacle_spawn: Marker2D = $ObstacleSpawn
 @onready var obstacles: Node2D = $Obstacles
 
-const BOX = preload("res://box.tscn")
+const BOX: PackedScene = preload("res://game/box.tscn")
 
 var shapes: Array[Array] = [
 	[

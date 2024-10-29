@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://ci5xq4fxd72er"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_bkfcb"]
+[ext_resource type="PackedScene" uid="uid://cdgip4poa2ctc" path="res://game/level.tscn" id="2_is1qh"]
+[ext_resource type="PackedScene" uid="uid://c544jwfm1cetq" path="res://game/player.tscn" id="3_lfalx"]
+[ext_resource type="PackedScene" uid="uid://dy02870g15ryp" path="res://game/bullet.tscn" id="4_fyy0a"]
+[ext_resource type="Script" path="res://game/explosion_area.gd" id="5_bc5ni"]
+[ext_resource type="PackedScene" uid="uid://b0my1xeahpxdj" path="res://game/spawner.tscn" id="6_1ytqh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cx62p"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axjki"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy1dl"]
+size = Vector2(57, 575)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_bkfcb")
+
+[node name="Level" parent="." instance=ExtResource("2_is1qh")]
+
+[node name="Player" parent="." instance=ExtResource("3_lfalx")]
+position = Vector2(56, 554)
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+shape = SubResource("WorldBoundaryShape2D_cx62p")
+
+[node name="Right" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1152, 0)
+shape = SubResource("WorldBoundaryShape2D_axjki")
+
+[node name="Bullet" parent="." instance=ExtResource("4_fyy0a")]
+position = Vector2(939, 563)
+
+[node name="ObstacleTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="ObstacleSpawn" type="Marker2D" parent="."]
+position = Vector2(1216, 608)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("5_bc5ni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+position = Vector2(-36, 320)
+shape = SubResource("RectangleShape2D_uy1dl")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("target_parent") instance=ExtResource("6_1ytqh")]
+position = Vector2(1044, 504)
+item_to_spawn = ExtResource("4_fyy0a")
+target_parent = NodePath("../SpawnedObjects")
+
+[node name="SpawnedObjects" type="Node2D" parent="."]
+
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="area_entered" from="ExplosionArea" to="ExplosionArea" method="_on_area_entered"]
+[connection signal="body_entered" from="ExplosionArea" to="ExplosionArea" method="_on_body_entered"]

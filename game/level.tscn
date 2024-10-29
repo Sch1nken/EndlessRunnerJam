@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=4 uid="uid://cdgip4poa2ctc"]
 
 [ext_resource type="Texture2D" uid="uid://nud41v23p2hh" path="res://assets/Textures-16.png" id="1_tqwr1"]
-[ext_resource type="Script" path="res://level.gd" id="2_1mycs"]
+[ext_resource type="Script" path="res://game/level.gd" id="2_1mycs"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkg46"]
 texture = ExtResource("1_tqwr1")

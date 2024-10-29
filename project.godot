@@ -11,13 +11,27 @@ config_version=5
 [application]
 
 config/name="EndlessRunner"
-run/main_scene="res://game.tscn"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameData="*res://game/game_data.gd"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://game/": "purple"
+}
+
+[layer_names]
+
+2d_physics/layer_2="Explodable"
 
 [rendering]
 
