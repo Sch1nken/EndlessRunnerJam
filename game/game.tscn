@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci5xq4fxd72er"]
+[gd_scene load_steps=13 format=4 uid="uid://ci5xq4fxd72er"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_bkfcb"]
 [ext_resource type="PackedScene" uid="uid://cdgip4poa2ctc" path="res://game/level.tscn" id="2_is1qh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dy02870g15ryp" path="res://game/bullet.tscn" id="4_fyy0a"]
 [ext_resource type="Script" path="res://game/explosion_area.gd" id="5_bc5ni"]
 [ext_resource type="PackedScene" uid="uid://b0my1xeahpxdj" path="res://game/spawner.tscn" id="6_1ytqh"]
+[ext_resource type="Texture2D" uid="uid://cueok0tssvcxk" path="res://assets/spritesheet.png" id="7_4q7gp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cx62p"]
 normal = Vector2(1, 0)
@@ -15,6 +16,43 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uy1dl"]
 size = Vector2(57, 575)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_anwd5"]
+texture = ExtResource("7_4q7gp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3fl17"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_anwd5")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_bkfcb")
@@ -59,6 +97,10 @@ item_to_spawn = ExtResource("4_fyy0a")
 target_parent = NodePath("../SpawnedObjects")
 
 [node name="SpawnedObjects" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAFAAMAAAACAAAAAAAGAAQAAAACAAAAAAAHAAQAAAACAAAAAAAIAAQAAAACAAAAAAAJAAUAAAACAAAAAAAJAAYAAAACAAAAAAAJAAcAAAACAAAAAAAJAAgAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_3fl17")
 
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
 [connection signal="area_entered" from="ExplosionArea" to="ExplosionArea" method="_on_area_entered"]
