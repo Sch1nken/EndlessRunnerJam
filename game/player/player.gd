@@ -5,6 +5,10 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+@export var death_scene: PackedScene
+
+func _ready() -> void:
+	assert(death_scene != null)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,5 +32,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die() -> void:
+	var death: Node2D = death_scene.instantiate()
+	add_sibling(death)
+	death.global_position = global_position
 	queue_free()
-	get_tree().create_timer(2.0).timeout.connect(get_tree().quit)
+	get_tree().create_timer(3.0).timeout.connect(get_tree().quit)

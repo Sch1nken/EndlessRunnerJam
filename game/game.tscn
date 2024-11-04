@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_bkfcb"]
 [ext_resource type="PackedScene" uid="uid://cdgip4poa2ctc" path="res://game/level.tscn" id="2_is1qh"]
-[ext_resource type="PackedScene" uid="uid://c544jwfm1cetq" path="res://game/player.tscn" id="3_lfalx"]
+[ext_resource type="PackedScene" uid="uid://c544jwfm1cetq" path="res://game/player/player.tscn" id="3_lfalx"]
 [ext_resource type="PackedScene" uid="uid://dy02870g15ryp" path="res://game/bullet.tscn" id="4_fyy0a"]
 [ext_resource type="Script" path="res://game/explosion_area.gd" id="5_bc5ni"]
 [ext_resource type="PackedScene" uid="uid://b0my1xeahpxdj" path="res://game/spawner.tscn" id="6_1ytqh"]
