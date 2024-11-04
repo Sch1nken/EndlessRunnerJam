@@ -9,8 +9,6 @@ var spawners: Array[Marker2D]
 func _ready() -> void:
 	spawners.assign(find_children("", "Marker2D", false))
 		
-func _process(delta: float) -> void:
-	pass
 
 func _on_timer_timeout() -> void:
 	var item: Node2D = item_to_spawn.instantiate()
